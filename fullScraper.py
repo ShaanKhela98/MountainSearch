@@ -1,3 +1,5 @@
+#Shaan Khela
+#Web scraper used to create Mountain database 
 import os
 import sys
 from bs4 import BeautifulSoup
