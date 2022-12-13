@@ -1,5 +1,5 @@
-# Team Googolplex
-# October 26th, 2018
+# Shaan Khela
+# Query a search over csv database file
 import csv
 import sys
 from builtins import input
