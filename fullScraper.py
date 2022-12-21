@@ -55,12 +55,15 @@ def strip_ns(tree):
 
 def stripString(str):
 	newStr = str
-	#remove unwanted stuff
+	
+	#remove unwanted items
 	newStr = newStr.replace("\xa0","")
 	newStr = newStr.replace("\n","")
 	newStr = newStr.replace("\u2009","")
-	#remove anything after the )
+	
+	#remove anything after the ')'
 	newStr = re.sub("\)(.*)",")",newStr)
+	
 	#return stripped string
 	return newStr
 
@@ -69,13 +72,15 @@ def scrapePage(link, pageType):
 #scrape a page about a Name, Size, Location, Latitude, Longitude, Image, Type, Description
 	htmlPage = getPage(link)
 	mySoup = BeautifulSoup(htmlPage.content, "html.parser")
+	
 	#predefine data list
 	scrapedData = ["No name","No size","No location","No longitude", "No latitude", "No image","No Type","No Description"]
+	
 	#get the whole article header
 	mtnName = mySoup.h1.string
 	scrapedData[0] = mtnName
 
-	#figure out what type it is
+	#gather types
 	mountainTags = ['Elevation']
 	bridgeTags = ['Total length']
 	buildingTags = ['Architectural','Roof','Top Floor','Antenna spire','Height']
@@ -129,6 +134,7 @@ def scrapePage(link, pageType):
 
 
 		elev = None
+		
 		#find the tag with height information
 		for i in range(len(buildingTags)):
 			if elev is None:
